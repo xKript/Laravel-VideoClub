@@ -2,26 +2,26 @@
 @section('content')
     <div class="row">
     	<div class="col-sm-4">
-     	    <img src="{{$movie['poster']}}" style="width: 20vw;" />
+     	    <img src="{{$movie->poster}}" style="width: 20vw;" />
     	</div>
 	    <div class="col-sm-8">
-	    	<h1>{{$movie['title']}}</h1>
+	    	<h1>{{$movie->title}}</h1>
 	    	<div>
-	       		<div><strong>Año:</strong> {{$movie['year']}}</div>
-	       		<div><strong>Director:</strong> {{$movie['director']}}</div>
+	       		<div><strong>Año:</strong> {{$movie->year}}</div>
+	       		<div><strong>Director:</strong> {{$movie->director}}</div>
 	       		<div>
 	       			<strong>Estado:</strong>
-	       		 	@if($movie['rented'])
+	       		 	@if($movie->rented)
 	       		 	    Pelicula actualmete alquilada
 	       		 	@else
 	       		 	    Pelicula disponible
 	       		 	@endif
 	       		</div><br>
 	       </div>
-	       <h2>Sinopsis:</h2> <p>{{$movie['synopsis']}}</p>
+	       <h2>Sinopsis:</h2> <p>{{$movie->synopsis}}</p>
 	       <p>
 	       		<a class="btn btn-warning" href="{{ url('/catalog/edit/' . $id ) }}"><span class="fa fa-pencil-alt"></span>Editar</a>
-	       		@if($movie['rented'])
+	       		@if($movie->rented)
 	       			<a class="btn btn-danger" href="">Devolver</a>	           
 	       		@else
 	       			<a class="btn btn-primary" href="">Alquilar película</a>
