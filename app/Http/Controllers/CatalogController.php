@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-//include 'array_peliculas.php';
 
 use Illuminate\Http\Request;
 use DB;
