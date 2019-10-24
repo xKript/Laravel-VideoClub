@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 //include 'array_peliculas.php';
 
 use Illuminate\Http\Request;
-
+use DB;
+use App\Movie;
 class CatalogController extends Controller
 {
     
     function getIndex()
     {
-    	return view('catalog.index',array('arrayPeliculas' => $this->arrayPeliculas));
+    	$movies = DB::table('movies')->get();
+        return view('catalog.index',array('arrayPeliculas' => $movies));
     }
 
     function getShow($id)
     {
-    	$movie = $this->arrayPeliculas[$id];
+    	$movie = Movie::findOrFail($id);
         return view('catalog.show' ,array('id' => $id, 'movie' => $movie));
     }
 
@@ -26,6 +28,7 @@ class CatalogController extends Controller
 
     function getEdit($id)
     {
-    	return view('catalog.edit' ,array('id' => $id));
+    	$movie = Movie::findOrFail($id);
+        return view('catalog.edit' ,array('id' => $id, 'movie' => $movie));
     }
 }

@@ -20,7 +20,7 @@
 	       </div>
 	       <h2>Sinopsis:</h2> <p>{{$movie->synopsis}}</p>
 	       <p>
-	       		<a class="btn btn-warning" href="{{ url('/catalog/edit/' . $id ) }}"><span class="fa fa-pencil-alt"></span>Editar</a>
+	       		<a class="btn btn-warning" href="{{ url('/catalog/edit/' . $movie->id ) }}"><span class="fa fa-pencil-alt"></span>Editar</a>
 	       		@if($movie->rented)
 	       			<a class="btn btn-danger" href="">Devolver</a>	           
 	       		@else
