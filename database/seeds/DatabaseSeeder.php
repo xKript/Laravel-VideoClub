@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Movie;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -169,6 +170,27 @@ class DatabaseSeeder extends Seeder
         )
     );
 
+    private $arrayUsers = array(
+        array(
+            'name' => 'admin',
+            'email' => 'admin@mail.com',
+            'phone' => '132456789',
+            'password' => 'admin'
+        ),
+        array(
+            'name' => 'jhon',
+            'email' => 'jhon@doe.com',
+            'phone' => '132456789',
+            'password' => 'jhon'
+        ),
+        array(
+            'name' => 'ashley',
+            'email' => 'ashley@mail.com',
+            'phone' => '132456789',
+            'password' => 'ashley'
+        )
+    );
+
     /**
      * Seed the application's database.
      *
@@ -177,6 +199,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         self::seedCatalog(); $this->command->info('Tabla catálogo inicializada con datos!');
+        self::seedUsers();
+        $this->command->info('Tabla usuarios inicializada con datos!');
     }
 
     private function seedCatalog()
@@ -192,6 +216,21 @@ class DatabaseSeeder extends Seeder
            $p->rented = $pelicula['rented'];
            $p->synopsis = $pelicula['synopsis'];
            $p->save();
-         }
+        }
+    }
+
+
+    private function seedUsers()
+    {
+        DB::table('users')->delete();
+        foreach( $this->arrayUsers as $usr ) 
+        {
+           $p = new User;
+           $p->name = $usr['name'];
+           $p->email = $usr['email'];
+           //$p->phone = $usr['phone'];
+           $p->password = bcrypt($usr['password']);
+           $p->save();
+        }
     }
 }
