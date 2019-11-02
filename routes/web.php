@@ -33,9 +33,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
-
 Route::post('catalog/create', 'CatalogController@postCreate')->middleware('auth');
 
 Route::put('catalog/edit/{id}', 'CatalogController@putEdit')->middleware('auth');

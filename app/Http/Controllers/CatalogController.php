@@ -29,4 +29,34 @@ class CatalogController extends Controller
     	$movie = Movie::findOrFail($id);
         return view('catalog.edit' ,array('id' => $id, 'movie' => $movie));
     }
+
+
+    function postCreate(Request $request)
+    {
+        $title -> $request->input('title');
+        $year -> request->input('year');
+        $director -> request->input('director');
+        $poster -> request->input('poster');
+        $rented -> request->input('rented');
+        $synopsis -> request->input('synopsis');
+
+        // Validations here...
+
+        $p = new Movie;
+        $p->title = title;
+        $p->year = year;
+        $p->director = director;
+        $p->poster = poster;
+        $p->rented = rented;
+        $p->synopsis = synopsis;
+        $p->save();
+
+        return redirect()->route('catalog');
+
+    }
+
+    function putEdit(Request $request)
+    {
+
+    }
 }

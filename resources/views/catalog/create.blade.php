@@ -9,7 +9,7 @@
              </div>
              <div class="card-body" style="padding:30px">
 
-                <form method="POST" action="/profile">
+                <form method="POST" action="/catalog/create">
     				@csrf
 	                <div class="form-group">
 	                   <label for="title">Título</label>
