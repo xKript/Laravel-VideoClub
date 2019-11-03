@@ -27,6 +27,8 @@ Route::get('catalog/show/{id}', 'CatalogController@getShow')->middleware('auth')
 
 Route::get('catalog/create', 'CatalogController@getCreate')->middleware('auth');
 
+Route::put('catalog/update/{id}', 'CatalogController@putUpdate')->name('catalog.update')->middleware('auth');
+
 Route::get('catalog/edit/{id}', 'CatalogController@getEdit')->middleware('auth');
 
 Auth::routes();
@@ -34,5 +36,3 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('catalog/create', 'CatalogController@postCreate')->middleware('auth');
-
-Route::put('catalog/edit/{id}', 'CatalogController@putEdit')->middleware('auth');

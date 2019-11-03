@@ -7,7 +7,8 @@
                 Modificar película
              </div>
              <div class="card-body" style="padding:30px">
-                <form method="PUT" action="/profile">
+                <form method="POST" action="{{route('catalog.update',$id)}}">
+    				@method('PUT')
     				@csrf
 	                <div class="form-group">
 	                   <label for="title">Título</label>

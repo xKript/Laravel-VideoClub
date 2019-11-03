@@ -33,8 +33,15 @@
 
 	                <div class="form-group">
 	                   <label for="synopsis">Resumen</label>
-	                   <textarea name="synopsis" id="synopsis" class="form-control" rows="3"></textarea>
+	                   <textarea name="synopsis" name="synopsis" id="synopsis" class="form-control" rows="3"></textarea>
 	                </div>
+
+	                <div class="form-check">
+					  <label class="form-check-label" for="rented">
+					  <input class="form-check-input" type="checkbox" name="rented" id="rented">
+					    Rentada
+					  </label>
+					</div>
 
 	                <div class="form-group text-center">
 	                   <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
