@@ -110,7 +110,8 @@ class CatalogController extends Controller
 
     function deleteMovie(Request $request, $id)
     {
-
+        $p = Movie::findOrFail($id);
+        $p -> remove();
     }
 
 
