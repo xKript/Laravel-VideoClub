@@ -36,3 +36,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('catalog/create', 'CatalogController@postCreate')->middleware('auth');
+
+// Management
+
+Route::put('/catalog/rent/{id}', 'CatalogController@putRent')->middleware('auth');
+
+Route::put('/catalog/return/{id}', 'CatalogController@putReturn')->middleware('auth');
+
+Route::delete('/catalog/delete/{id}', 'CatalogController@deleteMovie')->middleware('auth');

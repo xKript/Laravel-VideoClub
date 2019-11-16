@@ -86,4 +86,32 @@ class CatalogController extends Controller
 
         return redirect()->action('CatalogController@getIndex',['id' => $id]);
     }
+
+    function putRent(Request $request, $id)
+    {
+        //$id = $request->get('id');
+        // Validations here...
+
+        $p = Movie::findOrFail($id);
+        $p->rented = true;
+        $p->save();
+
+        return redirect()->action('CatalogController@getIndex',['id' => $id]);
+    }
+
+    function putReturn(Request $request, $id)
+    {
+        $p = Movie::findOrFail($id);
+        $p->rented = false;
+        $p->save();
+
+        return redirect()->action('CatalogController@getIndex',['id' => $id]);
+    }
+
+    function deleteMovie(Request $request, $id)
+    {
+
+    }
+
+
 }

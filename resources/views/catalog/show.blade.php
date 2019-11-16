@@ -20,13 +20,26 @@
 	       </div>
 	       <h2>Sinopsis:</h2> <p>{{$movie->synopsis}}</p>
 	       <p>
-	       		<a class="btn btn-warning" href="{{ url('/catalog/edit/' . $movie->id ) }}"><span class="fa fa-pencil-alt"></span>Editar</a>
+	       		<a class="btn btn-warning" href="{{ url('/catalog/edit/' . $movie->id ) }}"><span class="fa fa-pencil-alt"></span>  Editar</a>
+
+	       		<!-- <a class="btn btn-dark" href="{{ url('/catalog/delete/' . $movie->id ) }}"><span class="fa fa-trash"></span>  Eliminar</a> -->
+	       		<form action="{{action('CatalogController@deleteMovie', $movie->id)}}" method="POST" style="display:inline"> {{ method_field('DELETE') }} {{ csrf_field() }} <button type="submit" class="btn btn-danger" style="display:inline"> Eliminar película </button> </form>
+
 	       		@if($movie->rented)
-	       			<a class="btn btn-danger" href="">Devolver</a>	           
+	       			<form action="{{action('CatalogController@putReturn', $movie->id)}}" method="POST" style="display:inline"> {{ method_field('PUT') }} {{ csrf_field() }} <button type="submit" class="btn btn-danger" style="display:inline"> Devolver película </button> </form>	           
 	       		@else
-	       			<a class="btn btn-primary" href="">Alquilar película</a>
-	       		@endif     
-	       		<a class="btn btn-light" href="{{ url('/catalog/') }}">Volver al sitio</a>
+	       			<form action="{{action('CatalogController@putRent', $movie->id)}}" method="POST" style="display:inline"> {{ method_field('PUT') }} {{ csrf_field() }} <button type="submit" class="btn btn-primary" style="display:inline"> Alquilar película </button> </form>	
+	       		@endif
+
+	       		<!-- @if($movie->rented)
+	       			<form action="{{action('CatalogController@putReturn', $movie->id)}}" method="POST" style="display:inline"> {{ method_field('PUT') }} {{ csrf_field() }} <button type="submit" class="btn btn-danger" style="display:inline"> Devolver película </button> </form>	           
+	       		@else
+	       			<form action="{{action('CatalogController@putRent', $movie->id)}}" method="POST" style="display:inline"> {{ method_field('PUT') }} {{ csrf_field() }} <button type="submit" class="btn btn-primary" style="display:inline"> Alquilar película </button> </form>	
+	       		@endif -->
+
+	       		<a class="btn btn-light" href="{{ url('/catalog/') }}"><span class="" >
+	       			Volver al sitio
+	       		</span></a>
 	       		
 	       </p>
 	    </div> 
