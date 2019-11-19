@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Movie;
+use Coderatio\Laranotify\Facades\Notify;
+
 class CatalogController extends Controller
 {
     
@@ -53,7 +55,15 @@ class CatalogController extends Controller
         $p->poster = $poster;
         $p->rented = $rented;
         $p->synopsis = $synopsis;
-        $p->save();
+
+        if($p->save())
+        {
+            Notify::info ('Movie created!')->progress(false);
+        }
+        else
+        {
+            Notify::error('Error! movie could not be created...')->progress(false);
+        }
 
         //return redirect()->route('catalog');
         return redirect()->action('CatalogController@getIndex');
@@ -82,36 +92,63 @@ class CatalogController extends Controller
         $p->poster = $poster;
         $p->rented = $rented;
         $p->synopsis = $synopsis;
-        $p->save();
+        if($p->save())
+        {
+            Notify::info('Changes saved!')->progress(false);
+        }
+        else
+        {
+            Notify::error('Error! changes were not saved...')->progress(false);
+        }
 
-        return redirect()->action('CatalogController@getIndex',['id' => $id]);
+
+        return redirect()->action('CatalogController@getShow',['id' => $id]);
     }
 
     function putRent(Request $request, $id)
     {
-        //$id = $request->get('id');
-        // Validations here...
-
         $p = Movie::findOrFail($id);
         $p->rented = true;
-        $p->save();
-
-        return redirect()->action('CatalogController@getIndex',['id' => $id]);
+        if($p->save())
+        {
+            Notify::success('Successfully rented!')->progress(false);
+        }
+        else
+        {
+            Notify::error('Error! movie could not be rented...')->progress(false);
+        }
+        return redirect()->action('CatalogController@getShow',['id' => $id]);
     }
 
     function putReturn(Request $request, $id)
     {
         $p = Movie::findOrFail($id);
         $p->rented = false;
-        $p->save();
+        if($p->save())
+        {
+            Notify::success('Movie returned!')->progress(false);
+        }
+        else
+        {
+            Notify::error('Error! movie could not be returned...')->progress(false);
+        }
 
-        return redirect()->action('CatalogController@getIndex',['id' => $id]);
+        return redirect()->action('CatalogController@getShow',['id' => $id]);
     }
 
     function deleteMovie(Request $request, $id)
     {
         $p = Movie::findOrFail($id);
-        $p -> remove();
+        $mname = $p->title;
+        if($p->delete())
+        {
+            Notify::warning('Movie ' . $mname . ' was deleted!')->progress(false);
+        }
+        else
+        {
+            Notify::error('Error! movie could not be deleted...')->progress(false);
+        }
+        return redirect()->action('CatalogController@getIndex');
     }
 
 

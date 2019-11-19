@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b979de89fc21883853bf290b8a2aa624",
+    "content-hash": "7712b62190b65af5df62a040eca0c342",
     "packages": [
         {
             "name": "coderatio/laranotify",
