@@ -7,3 +7,8 @@ php artisan ui vue --auth
 
 
 composer require illuminate/support
+
+
+php artisan make:middleware AuthenticateOnceWithBasicAuth
+
+php artisan route:list 

@@ -58,11 +58,11 @@ class CatalogController extends Controller
 
         if($p->save())
         {
-            Notify::info ('Movie created!')->progress(false);
+            Notify::info ('Pelicula creada!')->progress(false);
         }
         else
         {
-            Notify::error('Error! movie could not be created...')->progress(false);
+            Notify::error('Error! la pelicula no pudo ser creada...')->progress(false);
         }
 
         //return redirect()->route('catalog');
@@ -94,13 +94,12 @@ class CatalogController extends Controller
         $p->synopsis = $synopsis;
         if($p->save())
         {
-            Notify::info('Changes saved!')->progress(false);
+            Notify::info('Cambios guardados!')->progress(false);
         }
         else
         {
-            Notify::error('Error! changes were not saved...')->progress(false);
+            Notify::error('Error! los cambios no se guardaron...')->progress(false);
         }
-
 
         return redirect()->action('CatalogController@getShow',['id' => $id]);
     }
@@ -111,11 +110,11 @@ class CatalogController extends Controller
         $p->rented = true;
         if($p->save())
         {
-            Notify::success('Successfully rented!')->progress(false);
+            Notify::success('Rentada correctamente!')->progress(false);
         }
         else
         {
-            Notify::error('Error! movie could not be rented...')->progress(false);
+            Notify::error('Error! la película no pudo rentarse...')->progress(false);
         }
         return redirect()->action('CatalogController@getShow',['id' => $id]);
     }
@@ -126,11 +125,11 @@ class CatalogController extends Controller
         $p->rented = false;
         if($p->save())
         {
-            Notify::success('Movie returned!')->progress(false);
+            Notify::success('Película devuleta!')->progress(false);
         }
         else
         {
-            Notify::error('Error! movie could not be returned...')->progress(false);
+            Notify::error('Error! la película no pudo ser devuleta...')->progress(false);
         }
 
         return redirect()->action('CatalogController@getShow',['id' => $id]);
@@ -142,11 +141,11 @@ class CatalogController extends Controller
         $mname = $p->title;
         if($p->delete())
         {
-            Notify::warning('Movie ' . $mname . ' was deleted!')->progress(false);
+            Notify::warning('La película ' . $mname . ' fue eliminada!')->progress(false);
         }
         else
         {
-            Notify::error('Error! movie could not be deleted...')->progress(false);
+            Notify::error('Error! la película no pudo ser eliminada...')->progress(false);
         }
         return redirect()->action('CatalogController@getIndex');
     }
